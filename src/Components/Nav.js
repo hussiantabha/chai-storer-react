@@ -18,15 +18,21 @@ const NavBar = () => {
           />
         </div>
         <div class="nav-link-container">
-          <button className="btn btn-primary-outline"> Login </button>
-          <div class="badges">
-            <i class="fas fa-heart nav-cart"></i>
-            <span class="badge">2</span>
-          </div>
-          <div class="badges">
-            <i class="fas fa-shopping-cart nav-cart"></i>
-            <span class="badge">2</span>
-          </div>
+          <Link to="/login">
+            <button className="btn btn-primary-outline"> Login </button>
+          </Link>
+          <Link to="/wishlist">
+            <div class="badges">
+              <i class="fas fa-heart nav-cart"></i>
+              <span class="badge">2</span>
+            </div>
+          </Link>
+          <Link to="/cart">
+            <div class="badges">
+              <i class="fas fa-shopping-cart nav-cart"></i>
+              <span class="badge">2</span>
+            </div>
+          </Link>
         </div>
         <div class="nav-hamburger">
           <i class="fas fa-bars hamburger-icon"></i>

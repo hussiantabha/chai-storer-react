@@ -1,11 +1,12 @@
 import React from "react";
 import { NavBar } from "../Components/Nav";
+import { ListingProducts } from "../Components/listingProducts";
 
 const Products = () => {
   return (
     <>
       <NavBar />
-      <h1>This is a products Page</h1>
+      <ListingProducts />
     </>
   );
 };
