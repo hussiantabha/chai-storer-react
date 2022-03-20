@@ -1,0 +1,105 @@
+.product-body {
+  display: grid;
+  grid-template-columns: 20vw auto auto;
+  grid-template-areas:
+    "nav nav nav"
+    "filter-sidebar main-product-container main-product-container"
+    "filter-sidebar main-product-container main-product-container";
+}
+.nav {
+  grid-area: nav;
+}
+.filter-sidebar {
+  grid-area: filter-sidebar;
+  height: 100%;
+  background-color: var(--light-purple);
+  position: relative;
+}
+/* Filters */
+.filters {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  padding: 2rem;
+  position: fixed;
+}
+.filter-category {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+}
+.filter-category span {
+  margin-left: 0.5rem;
+}
+.filter-slider {
+  width: 80%;
+}
+.slider-span {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-product-container {
+  grid-area: main-product-container;
+  /* background-color: burlywood; */
+  max-width: 100%;
+}
+.product-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  row-gap: 1rem;
+  margin: 3rem 0;
+}
+.product-card {
+  display: flex;
+  max-width: 17rem;
+  flex-direction: column;
+  row-gap: 9px;
+  border: 1px solid var(--light-gray);
+  padding: 1rem 0;
+  position: relative;
+}
+.card-img {
+  width: 45%;
+  align-self: center;
+}
+.price-scratch {
+  text-decoration: line-through;
+}
+.card-btn-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.card-price {
+  margin-top: 0.5rem;
+}
+.card-like-btn {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 4%;
+  right: 6%;
+}
+.input-text-search {
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--light-gray);
+  width: 80%;
+}
+@media screen and (max-width: 768px) {
+  .product-body {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "nav"
+      "main-product-container";
+  }
+}
