@@ -4,7 +4,6 @@ import "../App.css";
 
 const ListingProducts = () => {
   const { products } = useContext(FilterContext);
-  console.log(products);
   return (
     <>
       <body className="product-body">
@@ -79,7 +78,9 @@ const ListingProducts = () => {
             {products.map((product) => {
               return (
                 <div className="product-card">
-                  <img src={product.imgURL} className="card-img" />
+                  <div className="productCard-img-container">
+                    <img src={product.imgURL} className="card-img" />
+                  </div>
                   <div className="card-content">
                     <h1>{product.productBrand}</h1>
                     <div className="card-price">
@@ -87,6 +88,9 @@ const ListingProducts = () => {
                         ₹{product.originalPrice}
                       </span>
                       <span>₹{product.price}</span>
+                      <div className="card-ratings">
+                        <span>{product.ratings}</span>
+                      </div>
                     </div>
                   </div>
                   <div className="card-btn-container">
@@ -101,27 +105,6 @@ const ListingProducts = () => {
                 </div>
               );
             })}
-            {/* <div className="product-card">
-              <img src="../assets/exotic.png" className="card-img" />
-              <div className="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div className="card-price">
-                  <span className="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div className="card-btn-container">
-                <a href="./cart.html" className="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html" className="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button className="btn-primary card-like-btn">
-                <i className="fas fa-heart"></i>
-              </button>
-            </div> */}
           </section>
         </main>
       </body>

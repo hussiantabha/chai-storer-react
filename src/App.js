@@ -9,16 +9,12 @@ import axios from "axios";
 import { FilterContext } from "./Context";
 
 function App() {
-  const { products } = useContext(FilterContext);
-  console.log(products);
   return (
-    <>
-      <div className="App">
-        <NavBar />
-        <MainCategories />
-        <Main />
-      </div>
-    </>
+    <div className="App">
+      <NavBar />
+      <MainCategories />
+      <Main />
+    </div>
   );
 }
 

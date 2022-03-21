@@ -6,8 +6,12 @@ const FilterContext = createContext({});
 const FilterContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const getData = async () => {
-    const data = await axios.get("api/products");
-    setProducts(data.data.products);
+    try {
+      const data = await axios.get("api/products");
+      setProducts(data.data.products);
+    } catch (error) {
+      setProducts(error);
+    }
   };
   useEffect(() => {
     getData();
