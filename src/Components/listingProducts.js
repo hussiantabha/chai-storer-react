@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FilterContext } from "../Context";
 import "../App.css";
 
 const ListingProducts = () => {
+  const { products } = useContext(FilterContext);
+  console.log(products);
   return (
     <>
-      <body class="product-body">
-        <aside class="filter-sidebar">
-          <section class="filters">
+      <body className="product-body">
+        <aside className="filter-sidebar">
+          <section className="filters">
             <div>
               <input
                 type="search"
-                class="input-text-search"
+                className="input-text-search"
                 placeholder="search Product"
               />
             </div>
@@ -20,15 +23,15 @@ const ListingProducts = () => {
                 min="1"
                 max="100"
                 value="50"
-                class="filter-slider"
+                className="filter-slider"
               />
-              <div class="slider-span">
+              <div className="slider-span">
                 <span>0</span>
                 <span>50</span>
                 <span>100</span>
               </div>
             </div>
-            <div class="filter-category">
+            <div className="filter-category">
               <h3>Category</h3>
               <div>
                 <input type="checkbox" />
@@ -47,208 +50,78 @@ const ListingProducts = () => {
                 <span>Healthy Tea</span>
               </div>
             </div>
-            <div class="filter-category">
+            <div className="filter-category">
               <h3>Rating</h3>
-              <div>
-                <input type="checkbox" />
-                <span>4 star & above</span>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <span>3 star & above</span>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <span>2 star & above</span>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <span>1 star & above</span>
-              </div>
+              {[4, 3, 2, 1].map((item) => {
+                return (
+                  <div>
+                    <input type="checkbox" />
+                    <span>{item} star & above</span>
+                  </div>
+                );
+              })}
             </div>
-            <div class="filter-category">
+            <div className="filter-category">
               <h3>Sort By</h3>
               <div>
                 <input type="radio" name="value" />
-                <span>Price - Low to High</span>
+                <label>Price - Low to High</label>
               </div>
               <div>
                 <input type="radio" name="value" />
-                <span>Price - High to Low</span>
+                <label>Price - High to Low</label>
               </div>
             </div>
           </section>
         </aside>
-        <main class="main-product-container">
-          <section class="product-card-container">
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
+        <main className="main-product-container">
+          <section className="product-card-container">
+            {products.map((product) => {
+              return (
+                <div className="product-card">
+                  <img src={product.imgURL} className="card-img" />
+                  <div className="card-content">
+                    <h1>{product.productBrand}</h1>
+                    <div className="card-price">
+                      <span className="price-scratch">
+                        ₹{product.originalPrice}
+                      </span>
+                      <span>₹{product.price}</span>
+                    </div>
+                  </div>
+                  <div className="card-btn-container">
+                    <button className="btn btn-primary-outline">
+                      Add to Cart
+                    </button>
+                    <button className="btn btn-primary">Buy Now</button>
+                  </div>
+                  <button className="btn-primary card-like-btn">
+                    <i className="fas fa-heart"></i>
+                  </button>
+                </div>
+              );
+            })}
+            {/* <div className="product-card">
+              <img src="../assets/exotic.png" className="card-img" />
+              <div className="card-content">
                 <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
+                <div className="card-price">
+                  <span className="price-scratch">₹500/-</span>
                   <span>₹299/-</span>
                 </div>
               </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
+              <div className="card-btn-container">
+                <a href="./cart.html" className="btn btn-primary-outline">
                   Add to Cart
                 </a>
-                <a href="./cart.html" class="btn btn-primary">
+                <a href="./cart.html" className="btn btn-primary">
                   Buy Now
                 </a>
               </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
+              <button className="btn-primary card-like-btn">
+                <i className="fas fa-heart"></i>
               </button>
-            </div>
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html" class="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html" class="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html" class="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html" class="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html#" class="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html" class="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
-            <div class="product-card">
-              <img src="../assets/exotic.png" class="card-img" />
-              <div class="card-content">
-                <h1>Dil Khush Tea</h1>
-                <div class="card-price">
-                  <span class="price-scratch">₹500/-</span>
-                  <span>₹299/-</span>
-                </div>
-              </div>
-              <div class="card-btn-container">
-                <a href="./cart.html" class="btn btn-primary-outline">
-                  Add to Cart
-                </a>
-                <a href="./cart.html" class="btn btn-primary">
-                  Buy Now
-                </a>
-              </div>
-              <button class="btn-primary card-like-btn">
-                <i class="fas fa-heart"></i>
-              </button>
-            </div>
+            </div> */}
           </section>
         </main>
       </body>

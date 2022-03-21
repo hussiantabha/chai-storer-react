@@ -6,70 +6,78 @@ const Wishlist = () => {
     <>
       <NavBar />
       <main>
-        <h1 class="wishlist-display-title">My Wishlist</h1>
-        <section class="wishlist-card-container">
-          <div class="wishlist-card">
-            <div class="wishlist-card-img-container">
+        <h1 className="wishlist-display-title">My Wishlist</h1>
+        <section className="wishlist-card-container">
+          <div className="wishlist-card">
+            <div className="wishlist-card-img-container">
               <img
                 src="../assets/exotic.png"
                 alt="Exotic Tea"
-                class="wishlist-card-img"
+                className="wishlist-card-img"
               />
             </div>
-            <div class="wishlist-card-content">
-              <h2 class="card-title">Exotic Tea</h2>
-              <button class="btn btn-primary wishlist-btn">Move to Cart</button>
+            <div className="wishlist-card-content">
+              <h2 className="card-title">Exotic Tea</h2>
+              <button className="btn btn-primary wishlist-btn">
+                Move to Cart
+              </button>
             </div>
-            <button class="btn-primary card-like-btn">
-              <i class="fas fa-heart"></i>
+            <button className="btn-primary card-like-btn">
+              <i className="fas fa-heart"></i>
             </button>
           </div>
-          <div class="wishlist-card">
-            <div class="wishlist-card-img-container">
+          <div className="wishlist-card">
+            <div className="wishlist-card-img-container">
               <img
                 src="../assets/exotic.png"
                 alt="Exotic Tea"
-                class="wishlist-card-img"
+                className="wishlist-card-img"
               />
             </div>
-            <div class="wishlist-card-content">
-              <h2 class="card-title">Exotic Tea</h2>
-              <button class="btn btn-primary wishlist-btn">Move to Cart</button>
+            <div className="wishlist-card-content">
+              <h2 className="card-title">Exotic Tea</h2>
+              <button className="btn btn-primary wishlist-btn">
+                Move to Cart
+              </button>
             </div>
-            <button class="btn-primary card-like-btn">
-              <i class="fas fa-heart"></i>
+            <button className="btn-primary card-like-btn">
+              <i className="fas fa-heart"></i>
             </button>
           </div>
-          <div class="wishlist-card">
-            <div class="wishlist-card-img-container">
+          <div className="wishlist-card">
+            <div className="wishlist-card-img-container">
               <img
                 src="../assets/exotic.png"
                 alt="Exotic Tea"
-                class="wishlist-card-img"
+                className="wishlist-card-img"
               />
             </div>
-            <div class="wishlist-card-content">
-              <h2 class="card-title">Exotic Tea</h2>
-              <button class="btn btn-primary wishlist-btn">Move to Cart</button>
+            <div className="wishlist-card-content">
+              <h2 className="card-title">Exotic Tea</h2>
+              <button className="btn btn-primary wishlist-btn">
+                Move to Cart
+              </button>
             </div>
-            <button class="btn-primary card-like-btn">
-              <i class="fas fa-heart"></i>
+            <button className="btn-primary card-like-btn">
+              <i className="fas fa-heart"></i>
             </button>
           </div>
-          <div class="wishlist-card">
-            <div class="wishlist-card-img-container">
+          <div className="wishlist-card">
+            <div className="wishlist-card-img-container">
               <img
                 src="../assets/exotic.png"
                 alt="Exotic Tea"
-                class="wishlist-card-img"
+                className="wishlist-card-img"
               />
             </div>
-            <div class="wishlist-card-content">
-              <h2 class="card-title">Exotic Tea</h2>
-              <button class="btn btn-primary wishlist-btn">Move to Cart</button>
+            <div className="wishlist-card-content">
+              <h2 className="card-title">Exotic Tea</h2>
+              <button className="btn btn-primary wishlist-btn">
+                Move to Cart
+              </button>
             </div>
-            <button class="btn-primary card-like-btn">
-              <i class="fas fa-heart"></i>
+            <button className="btn-primary card-like-btn">
+              <i className="fas fa-heart"></i>
             </button>
           </div>
         </section>
