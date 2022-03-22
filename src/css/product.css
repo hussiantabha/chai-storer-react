@@ -58,11 +58,16 @@
   flex-direction: column;
   row-gap: 9px;
   border: 1px solid var(--light-gray);
-  padding: 1rem 0;
+  padding: 1rem;
   position: relative;
 }
+.productCard-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .card-img {
-  width: 45%;
+  max-width: 50%;
   align-self: center;
 }
 .price-scratch {
@@ -72,9 +77,15 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  column-gap: 0.75rem;
 }
 .card-price {
   margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.card-ratings {
+  padding-left: 1rem;
 }
 .card-like-btn {
   width: 2rem;

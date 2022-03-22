@@ -4,7 +4,7 @@ import "../css/navbar.css";
 const NavBar = () => {
   return (
     <>
-      <nav class="navbar nav">
+      <nav className="navbar nav">
         <Link to="/">
           <div>
             <h2>The Chai Store</h2>
@@ -18,18 +18,24 @@ const NavBar = () => {
           />
         </div>
         <div class="nav-link-container">
-          <button className="btn btn-primary-outline"> Login </button>
-          <div class="badges">
-            <i class="fas fa-heart nav-cart"></i>
-            <span class="badge">2</span>
-          </div>
-          <div class="badges">
-            <i class="fas fa-shopping-cart nav-cart"></i>
-            <span class="badge">2</span>
-          </div>
+          <Link to="/login">
+            <button className="btn btn-primary-outline"> Login </button>
+          </Link>
+          <Link to="/wishlist">
+            <div className="badges">
+              <i className="fas fa-heart nav-cart"></i>
+              <span className="badge">2</span>
+            </div>
+          </Link>
+          <Link to="/cart">
+            <div className="badges">
+              <i className="fas fa-shopping-cart nav-cart"></i>
+              <span className="badge">2</span>
+            </div>
+          </Link>
         </div>
-        <div class="nav-hamburger">
-          <i class="fas fa-bars hamburger-icon"></i>
+        <div className="nav-hamburger">
+          <i className="fas fa-bars hamburger-icon"></i>
         </div>
       </nav>
     </>
