@@ -10,6 +10,7 @@ import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import { FilterContextProvider } from "./Context";
+import MockMan from "./backend/Pages/MockMan";
 // Call make Server
 makeServer();
 
@@ -24,6 +25,7 @@ ReactDOM.render(
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/mock" element={<MockMan />} />
         </Routes>
       </BrowserRouter>
     </FilterContextProvider>

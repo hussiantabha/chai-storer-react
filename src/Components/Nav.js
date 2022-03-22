@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/navbar.css";
 const NavBar = () => {
+  const [showHam, setShowHam] = useState(false);
   return (
     <>
-      <nav className="navbar nav">
+      <nav className="navbar nav ">
         <Link to="/">
           <div>
             <h2>The Chai Store</h2>
@@ -17,7 +18,10 @@ const NavBar = () => {
             // placeholder="&#xf002 Search..."
           />
         </div>
-        <div class="nav-link-container">
+        {/* className={"nav-link-container nav-hamburger-active"} */}
+        <div
+          className={showHam ? "nav-hamburger-active" : "nav-link-container"}
+        >
           <Link to="/login">
             <button className="btn btn-primary-outline"> Login </button>
           </Link>
@@ -34,7 +38,10 @@ const NavBar = () => {
             </div>
           </Link>
         </div>
-        <div className="nav-hamburger">
+        <div
+          className="nav-hamburger"
+          onClick={() => setShowHam((prevState) => !prevState)}
+        >
           <i className="fas fa-bars hamburger-icon"></i>
         </div>
       </nav>

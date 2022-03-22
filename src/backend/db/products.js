@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    id: 1,
+    _id: uuid(),
     productBrand: "Tata Tea",
     productDetail: "Desh Ki Chai",
     originalPrice: 499,
