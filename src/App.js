@@ -6,7 +6,7 @@ import { Main } from "./Components/Main";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Products } from "./Pages/Products";
 import axios from "axios";
-import { FilterContext } from "./Context";
+import { FilterContext } from "./Context/Context";
 
 function App() {
   return (

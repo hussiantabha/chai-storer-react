@@ -1,51 +1,96 @@
 import React, { useContext } from "react";
-import { FilterContext } from "../Context";
+import { FilterContext } from "../Context/Context";
 import "../App.css";
 
 const ListingProducts = () => {
-  const { products } = useContext(FilterContext);
+  const { products, filterState, dispatch, sortData } =
+    useContext(FilterContext);
+
   return (
     <>
       <body className="product-body">
         <aside className="filter-sidebar">
           <section className="filters">
-            <div>
+            <div className="product-search-div">
               <input
                 type="search"
                 className="input-text-search"
                 placeholder="search Product"
               />
+              <button
+                className="btn-primary-outline px-1"
+                onClick={() => dispatch({ type: "clearAll" })}
+              >
+                Clear All
+              </button>
             </div>
             <div>
               <input
                 type="range"
                 min="1"
-                max="100"
-                value="50"
+                max="2100"
+                onChange={(e) =>
+                  dispatch({
+                    type: "RANGE",
+                    payload: { value: e.target.value },
+                  })
+                }
                 className="filter-slider"
               />
               <div className="slider-span">
                 <span>0</span>
-                <span>50</span>
-                <span>100</span>
+                <span>500</span>
+                <span>3000</span>
               </div>
             </div>
             <div className="filter-category">
               <h3>Category</h3>
               <div>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "category",
+                      payload: { value: "normal", check: e.target.checked },
+                    })
+                  }
+                />
                 <span>Day To Day Tea</span>
               </div>
               <div>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "category",
+                      payload: { value: "exotic", check: e.target.checked },
+                    })
+                  }
+                />
                 <span>Exotic Tea</span>
               </div>
               <div>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "category",
+                      payload: { value: "premium", check: e.target.checked },
+                    })
+                  }
+                />
                 <span>Premium Tea</span>
               </div>
               <div>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "category",
+                      payload: { value: "healthy", check: e.target.checked },
+                    })
+                  }
+                />
                 <span>Healthy Tea</span>
               </div>
             </div>
@@ -54,7 +99,15 @@ const ListingProducts = () => {
               {[4, 3, 2, 1].map((item) => {
                 return (
                   <div>
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      onClick={(e) =>
+                        dispatch({
+                          type: "RATING",
+                          payload: { check: e.target.checked, value: item },
+                        })
+                      }
+                    />
                     <span>{item} star & above</span>
                   </div>
                 );
@@ -63,11 +116,23 @@ const ListingProducts = () => {
             <div className="filter-category">
               <h3>Sort By</h3>
               <div>
-                <input type="radio" name="value" />
+                <input
+                  type="radio"
+                  name="value"
+                  onClick={() =>
+                    dispatch({ type: "SORT", payload: { sort: "lowtoHigh" } })
+                  }
+                />
                 <label>Price - Low to High</label>
               </div>
               <div>
-                <input type="radio" name="value" />
+                <input
+                  type="radio"
+                  name="value"
+                  onClick={() =>
+                    dispatch({ type: "SORT", payload: { sort: "hightoLow" } })
+                  }
+                />
                 <label>Price - High to Low</label>
               </div>
             </div>
@@ -75,36 +140,40 @@ const ListingProducts = () => {
         </aside>
         <main className="main-product-container">
           <section className="product-card-container">
-            {products.map((product) => {
-              return (
-                <div className="product-card">
-                  <div className="productCard-img-container">
-                    <img src={product.imgURL} className="card-img" />
-                  </div>
-                  <div className="card-content">
-                    <h1>{product.productBrand}</h1>
-                    <div className="card-price">
-                      <span className="price-scratch">
-                        ₹{product.originalPrice}
-                      </span>
-                      <span>₹{product.price}</span>
-                      <div className="card-ratings">
-                        <span>{product.ratings}</span>
+            {sortData.length === 0 ? (
+              <h2>Loading</h2>
+            ) : (
+              sortData.map((product) => {
+                return (
+                  <div className="product-card">
+                    <div className="productCard-img-container">
+                      <img src={product.imgURL} className="card-img" />
+                    </div>
+                    <div className="card-content">
+                      <h1 key={product.id}>{product.productBrand}</h1>
+                      <div className="card-price">
+                        <span className="price-scratch">
+                          ₹{product.originalPrice}
+                        </span>
+                        <span>₹{product.price}</span>
+                        <div className="card-ratings">
+                          <span>{product.ratings}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="card-btn-container">
-                    <button className="btn btn-primary-outline">
-                      Add to Cart
+                    <div className="card-btn-container">
+                      <button className="btn btn-primary-outline">
+                        Add to Cart
+                      </button>
+                      <button className="btn btn-primary">Buy Now</button>
+                    </div>
+                    <button className="btn-primary card-like-btn">
+                      <i className="fas fa-heart"></i>
                     </button>
-                    <button className="btn btn-primary">Buy Now</button>
                   </div>
-                  <button className="btn-primary card-like-btn">
-                    <i className="fas fa-heart"></i>
-                  </button>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </section>
         </main>
       </body>

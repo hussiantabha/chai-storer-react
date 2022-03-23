@@ -9,7 +9,7 @@ import Wishlist from "./Pages/Wishlist";
 import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
-import { FilterContextProvider } from "./Context";
+import { FilterContextProvider } from "./Context/Context";
 import MockMan from "./backend/Pages/MockMan";
 // Call make Server
 makeServer();

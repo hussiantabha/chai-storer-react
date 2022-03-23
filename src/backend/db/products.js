@@ -17,6 +17,7 @@ export const products = [
     inStock: true,
     fastDelivery: false,
     imgURL: "../assets/tata-tea-normal.jpg",
+    category: "normal",
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ export const products = [
     inStock: false,
     fastDelivery: true,
     imgURL: "../assets/exotica-lemon-tea.jpg",
+    category: "normal",
   },
   {
     id: 3,
@@ -42,6 +44,7 @@ export const products = [
     inStock: true,
     fastDelivery: false,
     imgURL: "../assets/tajmahal-tea.jpg",
+    category: "normal",
   },
   {
     id: 4,
@@ -54,6 +57,7 @@ export const products = [
     inStock: true,
     fastDelivery: true,
     imgURL: "../assets/flavored.png",
+    category: "premium",
   },
   {
     id: 5,
@@ -66,6 +70,7 @@ export const products = [
     inStock: true,
     fastDelivery: false,
     imgURL: "../assets/tajmahal-tea.jpg",
+    category: "premium",
   },
   {
     id: 6,
@@ -78,6 +83,7 @@ export const products = [
     inStock: false,
     fastDelivery: false,
     imgURL: "../assets/tajmahal-tea.jpg",
+    category: "healthy",
   },
   {
     id: 7,
@@ -90,6 +96,7 @@ export const products = [
     inStock: true,
     fastDelivery: false,
     imgURL: "../assets/tajmahal-tea.jpg",
+    category: "exotic",
   },
   // {
   //   id: 8,
