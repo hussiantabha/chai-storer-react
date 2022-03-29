@@ -11,6 +11,17 @@ const FilterContext = createContext({});
 
 const FilterContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  useEffect(() => {
+    // console.log(sessionStorage.getItem("token"));
+    if (sessionStorage.getItem("token") === null) {
+      setUserLoggedIn(false);
+    } else if (sessionStorage.getItem("token") === "undefined") {
+      setUserLoggedIn(false);
+    } else {
+      setUserLoggedIn(true);
+    }
+  });
   const getData = async () => {
     try {
       const data = await axios.get("api/products");
@@ -21,7 +32,7 @@ const FilterContextProvider = ({ children }) => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  });
   const reducerOBJ = {
     fastDelivery: false,
     sort: null,
@@ -36,7 +47,7 @@ const FilterContextProvider = ({ children }) => {
   const sortData = sortFunc(filterState, ratingData);
   return (
     <FilterContext.Provider
-      value={{ products, filterState, dispatch, sortData }}
+      value={{ products, filterState, dispatch, sortData, userLoggedIn }}
     >
       {children}
     </FilterContext.Provider>
