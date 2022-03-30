@@ -5,7 +5,8 @@ import "../App.css";
 const ListingProducts = () => {
   const { products, filterState, dispatch, sortData } =
     useContext(FilterContext);
-
+  const token = sessionStorage.getItem("token");
+  console.log(token);
   return (
     <>
       <body className="product-body">
