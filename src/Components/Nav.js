@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/navbar.css";
-const NavBar = () => {
+const NavBar = ({ wishlistCount, cartCount }) => {
   const [showHam, setShowHam] = useState(false);
   return (
     <>
@@ -28,13 +28,13 @@ const NavBar = () => {
           <Link to="/wishlist">
             <div className="badges">
               <i className="fas fa-heart nav-cart"></i>
-              <span className="badge">2</span>
+              <span className="badge">{wishlistCount}</span>
             </div>
           </Link>
           <Link to="/cart">
             <div className="badges">
               <i className="fas fa-shopping-cart nav-cart"></i>
-              <span className="badge">2</span>
+              <span className="badge">{cartCount}</span>
             </div>
           </Link>
         </div>

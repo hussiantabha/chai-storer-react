@@ -20,7 +20,7 @@ export const products = [
     category: "normal",
   },
   {
-    id: 2,
+    _id: uuid(),
     productBrand: "Tata Tea Gold",
     productDetail: "Real Taste Incredible Aroma",
     originalPrice: 530,
@@ -33,7 +33,7 @@ export const products = [
     category: "normal",
   },
   {
-    id: 3,
+    _id: uuid(),
     productBrand: "Taj Mahal Tea",
     productDetail:
       "Rich and Flavourful Chai - Premium Blend of Powdered Fresh Loose Tea Leaves",
@@ -47,7 +47,7 @@ export const products = [
     category: "normal",
   },
   {
-    id: 4,
+    _id: uuid(),
     productBrand: "Exotica Tea",
     productDetail: "Easy to make and flavorful",
     originalPrice: 150,
@@ -60,7 +60,7 @@ export const products = [
     category: "premium",
   },
   {
-    id: 5,
+    _id: uuid(),
     productBrand: "1868 Brew by Tata",
     productDetail: "",
     originalPrice: 1500,
@@ -73,7 +73,7 @@ export const products = [
     category: "premium",
   },
   {
-    id: 6,
+    _id: uuid(),
     productBrand: "Adidas",
     productDetail: "Runesy M Running Shoes For Men  (Grey) ",
     originalPrice: 1000,
@@ -86,7 +86,7 @@ export const products = [
     category: "healthy",
   },
   {
-    id: 7,
+    _id: uuid(),
     productBrand: "Adidas",
     productDetail: "Pictoris M Running Shoes For Men  (Black) ",
     originalPrice: 2000,
@@ -99,8 +99,8 @@ export const products = [
     category: "exotic",
   },
   // {
-  //   id: 8,
-  //   productBrand: "Adidas",
+  //   _id: 8,
+  //   productBrand: "Ad_idas",
   //   productDetail: "Adifloss M Running Shoes For Men  (Blue) ",
   //   originalPrice: 5000,
   //   price: 2500,
@@ -110,8 +110,8 @@ export const products = [
   //   fastDelivery: false,
   // },
   // {
-  //   id: 9,
-  //   productBrand: "Adidas",
+  //   _id: 9,
+  //   productBrand: "Ad_idas",
   //   productDetail: "Quickflow M Running Shoes For Men  (Blue)",
   //   originalPrice: 9000,
   //   price: 8000,
@@ -121,7 +121,7 @@ export const products = [
   //   fastDelivery: true,
   // },
   // {
-  //   id: 10,
+  //   _id: 10,
   //   productBrand: "Nike",
   //   productDetail: "Revolution 5 Running Shoes For Men  (Black) ",
   //   originalPrice: 2700,
@@ -132,7 +132,7 @@ export const products = [
   //   fastDelivery: false,
   // },
   // {
-  //   id: 11,
+  //   _id: 11,
   //   productBrand: "Nike",
   //   productDetail: "Revolution 6 Next Nature Road s Running Shoes For Men  ",
   //   originalPrice: 9000,
@@ -143,7 +143,7 @@ export const products = [
   //   fastDelivery: false,
   // },
   // {
-  //   id: 12,
+  //   _id: 12,
   //   productBrand: "Nike",
   //   productDetail: "Downshifter 11 Road s Running Shoes For Men ",
   //   originalPrice: 3000,
@@ -154,7 +154,7 @@ export const products = [
   //   fastDelivery: true,
   // },
   // {
-  //   id: 13,
+  //   _id: 13,
   //   productBrand: "Nike",
   //   productDetail: "Revolution 4 Running Shoes For Men  (Black)",
   //   originalPrice: 7000,
@@ -165,7 +165,7 @@ export const products = [
   //   fastDelivery: false,
   // },
   // {
-  //   id: 14,
+  //   _id: 14,
   //   productBrand: "Nike",
   //   productDetail: "Revolution 6 Next Nature Road Running Shoes",
   //   originalPrice: 5000,
@@ -176,7 +176,7 @@ export const products = [
   //   fastDelivery: true,
   // },
   // {
-  //   id: 15,
+  //   _id: 15,
   //   productBrand: "Reebok",
   //   productDetail: "Downshifter 11 Road s Running Shoes For Men ",
   //   originalPrice: 10000,
@@ -187,7 +187,7 @@ export const products = [
   //   fastDelivery: true,
   // },
   // {
-  //   id: 16,
+  //   _id: 16,
   //   productBrand: "Reebok",
   //   productDetail: "Revolution 4 Running Shoes For Men  (Black)",
   //   originalPrice: 10000,
@@ -198,7 +198,7 @@ export const products = [
   //   fastDelivery: false,
   // },
   // {
-  //   id: 17,
+  //   _id: 17,
   //   productBrand: "Hrx",
   //   productDetail: "Revolution 6 Next Nature Road Running Shoes",
   //   originalPrice: 5000,
@@ -211,21 +211,21 @@ export const products = [
 ];
 // export const products = [
 //   {
-//     _id: uuid(),
+//     __id: uuid(),
 //     title: "You Can WIN",
 //     author: "Shiv Khera",
 //     price: "5000",
 //     categoryName: "non-fiction",
 //   },
 //   {
-//     _id: uuid(),
+//     __id: uuid(),
 //     title: "You are Winner",
-//     author: "Junaid Qureshi",
+//     author: "Juna_id Qureshi",
 //     price: "3000",
 //     categoryName: "horror",
 //   },
 //   {
-//     _id: uuid(),
+//     __id: uuid(),
 //     title: "Think and Grow Rich",
 //     author: "Shiv Khera",
 //     price: "1000",

@@ -1,15 +1,86 @@
 import React, { useContext } from "react";
 import { FilterContext } from "../Context/Context";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react/cjs/react.production.min";
 
 const ListingProducts = () => {
-  const { products, filterState, dispatch, sortData } =
+  const { products, filterState, dispatch, sortData, userLoggedIn } =
     useContext(FilterContext);
+  const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
-  console.log(token);
+  const addtoCart = async (product) => {
+    if (userLoggedIn) {
+      const postData = await fetch("/api/user/cart", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          authorization: token,
+        },
+        body: JSON.stringify({
+          product: product,
+        }),
+      });
+      const convertedJSON = await postData.json();
+      console.log(convertedJSON);
+      toast.success("Product Added To Cart", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      navigate("/login");
+    }
+  };
+  const addToWishlist = async (product) => {
+    if (userLoggedIn) {
+      const postData = await fetch("/api/user/wishlist", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          authorization: token,
+        },
+        body: JSON.stringify({
+          product: product,
+        }),
+      });
+      const convertedJSON = await postData.json();
+      console.log(convertedJSON);
+      toast.success("Product Added To Wishlist", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <>
       <body className="product-body">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
         <aside className="filter-sidebar">
           <section className="filters">
             <div className="product-search-div">
@@ -163,10 +234,18 @@ const ListingProducts = () => {
                       </div>
                     </div>
                     <div className="card-btn-container">
-                      <button className="btn btn-primary-outline">
+                      <button
+                        className="btn btn-primary-outline"
+                        onClick={() => addToWishlist(product)}
+                      >
+                        Add to Wishlist
+                      </button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => addtoCart(product)}
+                      >
                         Add to Cart
                       </button>
-                      <button className="btn btn-primary">Buy Now</button>
                     </div>
                     <button className="btn-primary card-like-btn">
                       <i className="fas fa-heart"></i>
