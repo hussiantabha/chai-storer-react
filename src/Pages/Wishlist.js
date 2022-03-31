@@ -32,7 +32,7 @@ const Wishlist = () => {
   const count = wishlist.length;
   return (
     <>
-      <NavBar wishlistCount={count} />
+      <NavBar />
       {userLoggedIn ? (
         <main>
           <h1 className="wishlist-display-title">My Wishlist</h1>

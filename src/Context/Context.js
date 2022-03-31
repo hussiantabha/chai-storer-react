@@ -12,6 +12,7 @@ const FilterContext = createContext({});
 const FilterContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const token = sessionStorage.getItem("token");
   useEffect(() => {
     // console.log(sessionStorage.getItem("token"));
     if (sessionStorage.getItem("token") === null) {
@@ -47,7 +48,13 @@ const FilterContextProvider = ({ children }) => {
   const sortData = sortFunc(filterState, ratingData);
   return (
     <FilterContext.Provider
-      value={{ products, filterState, dispatch, sortData, userLoggedIn }}
+      value={{
+        products,
+        filterState,
+        dispatch,
+        sortData,
+        userLoggedIn,
+      }}
     >
       {children}
     </FilterContext.Provider>
