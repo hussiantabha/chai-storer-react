@@ -120,6 +120,7 @@ const ListingProducts = () => {
               <div>
                 <input
                   type="checkbox"
+                  checked={filterState.categoryValue}
                   onClick={(e) =>
                     dispatch({
                       type: "category",
@@ -132,6 +133,7 @@ const ListingProducts = () => {
               <div>
                 <input
                   type="checkbox"
+                  checked={filterState.categoryValue}
                   onClick={(e) =>
                     dispatch({
                       type: "category",
@@ -144,6 +146,7 @@ const ListingProducts = () => {
               <div>
                 <input
                   type="checkbox"
+                  checked={filterState.categoryValue}
                   onClick={(e) =>
                     dispatch({
                       type: "category",
@@ -156,6 +159,7 @@ const ListingProducts = () => {
               <div>
                 <input
                   type="checkbox"
+                  checked={filterState.categoryValue}
                   onClick={(e) =>
                     dispatch({
                       type: "category",
@@ -168,11 +172,12 @@ const ListingProducts = () => {
             </div>
             <div className="filter-category">
               <h3>Rating</h3>
-              {[4, 3, 2, 1].map((item) => {
+              {/* {[4, 3, 2, 1].map((item) => {
                 return (
                   <div>
                     <input
                       type="checkbox"
+                      checked={filterState.ratingValue}
                       onClick={(e) =>
                         dispatch({
                           type: "RATING",
@@ -183,7 +188,55 @@ const ListingProducts = () => {
                     <span>{item} star & above</span>
                   </div>
                 );
-              })}
+              })} */}
+              <div>
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "RATING",
+                      payload: { check: e.target.checked, value: 4 },
+                    })
+                  }
+                />
+                <span>4 star & above</span>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "RATING",
+                      payload: { check: e.target.checked, value: 3 },
+                    })
+                  }
+                />
+                <span>3 star & above</span>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "RATING",
+                      payload: { check: e.target.checked, value: 2 },
+                    })
+                  }
+                />
+                <span>2 star & above</span>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  onClick={(e) =>
+                    dispatch({
+                      type: "RATING",
+                      payload: { check: e.target.checked, value: 1 },
+                    })
+                  }
+                />
+                <span>1 star & above</span>
+              </div>
             </div>
             <div className="filter-category">
               <h3>Sort By</h3>

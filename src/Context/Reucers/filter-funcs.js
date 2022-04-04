@@ -1,9 +1,6 @@
 import React from "react";
 const filterCategory = (state, data) => {
   if (state.category.length > 0) {
-    // return state.category.map((item) =>
-    //   data.filter((product) => product.category === item)
-    // );
     return data.filter((product) =>
       state.category.some((category) => category === product.category)
     );
