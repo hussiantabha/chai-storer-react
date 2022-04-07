@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import "../App.css";
 const Main = () => {
   return (
     <>
@@ -17,9 +18,9 @@ const Main = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               officiis necessitatibus sint mollitia? Laudantium, quia?
             </p>
-            <a href="./files/products.html" class="btn btn-primary cta">
-              Buy Now
-            </a>
+            <Link to="/products" className="cta">
+              <a class="btn btn-primary">Buy Now</a>
+            </Link>
           </div>
         </div>
         <div class="hero-card">
@@ -32,9 +33,9 @@ const Main = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               officiis necessitatibus sint mollitia? Laudantium, quia?
             </p>
-            <a href="./files/products.html" class="btn btn-primary cta">
-              Buy Now
-            </a>
+            <Link to="/products" className="cta">
+              <a class="btn btn-primary cta">Buy Now</a>
+            </Link>
           </div>
         </div>
       </section>
