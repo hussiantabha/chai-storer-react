@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { FilterContext } from "../Context/Context";
 import "../css/navbar.css";
-const NavBar = () => {
+const NavBar = ({ wishlistCount, cartCount }) => {
   const [showHam, setShowHam] = useState(false);
+  const { userLoggedIn, logout } = useContext(FilterContext);
+  console.log(userLoggedIn);
   return (
     <>
       <nav className="navbar nav ">
@@ -22,19 +25,29 @@ const NavBar = () => {
         <div
           className={showHam ? "nav-hamburger-active" : "nav-link-container"}
         >
-          <Link to="/login">
-            <button className="btn btn-primary-outline"> Login </button>
-          </Link>
+          {userLoggedIn ? (
+            <button
+              className="btn btn-primary-outline"
+              onClick={() => logout()}
+            >
+              Logout{" "}
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-primary-outline"> Login </button>
+            </Link>
+          )}
+
           <Link to="/wishlist">
             <div className="badges">
               <i className="fas fa-heart nav-cart"></i>
-              <span className="badge">2</span>
+              <span className="badge">{wishlistCount}</span>
             </div>
           </Link>
           <Link to="/cart">
             <div className="badges">
               <i className="fas fa-shopping-cart nav-cart"></i>
-              <span className="badge">2</span>
+              <span className="badge">{cartCount}</span>
             </div>
           </Link>
         </div>

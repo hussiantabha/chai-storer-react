@@ -17,12 +17,56 @@ const Login = () => {
         },
         body: JSON.stringify(loginInput),
       });
-      const convertedJSON = await postData.json();
-      console.log(convertedJSON);
-      sessionStorage.setItem("token", convertedJSON.encodedToken);
+      if (postData.status === 200) {
+        const convertedJSON = await postData.json();
+
+        sessionStorage.setItem("token", convertedJSON.encodedToken);
+        setLoginInput({ email: "", password: "" });
+        navigate("/products");
+      } else {
+        toast.error("Invalid Credentials", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      }
       setLoginInput({ email: "", password: "" });
-      navigate("/cart");
     } catch (error) {}
+  };
+  const testLogin = async () => {
+    try {
+      const postData = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "adarshbalak@gmail.com",
+          password: "adarshBalaki123",
+        }),
+      });
+      if (postData.status === 200) {
+        const convertedJSON = await postData.json();
+        sessionStorage.setItem("token", convertedJSON.encodedToken);
+        navigate("/products");
+      } else {
+        toast.error("Invalid Credentials", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   // console.log(loginInput);
   return (
@@ -79,6 +123,9 @@ const Login = () => {
           <div className="login-btn">
             <button className="btn btn-primary login-btn" onClick={loginFunc}>
               Login
+            </button>
+            <button className="btn btn-primary login-btn" onClick={testLogin}>
+              Login with Test Credentials
             </button>
             <Link to="/signup" className="btn btn-primary-outline login-btn">
               Create New Account

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavBar } from "../Components/Nav";
 import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUp = () => {
   let navigate = useNavigate();
@@ -15,15 +17,41 @@ const SignUp = () => {
       },
       body: JSON.stringify(input),
     });
-    const convertedJSON = await postData.json();
-    sessionStorage.setItem("token", convertedJSON.encodedToken);
-    setInput({ email: "", password: "" });
-    navigate("/");
+    if (postData.status === 201) {
+      const convertedJSON = await postData.json();
+      sessionStorage.setItem("token", convertedJSON.encodedToken);
+      setInput({ email: "", password: "" });
+      navigate("/");
+    } else {
+      toast.error("Email Already Exists", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+      setInput({ email: "", password: "" });
+    }
   };
 
   return (
     <>
       <NavBar />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      {/* Same as */}
+      <ToastContainer />
       <section className="login-container">
         <div className="card card-head-first login">
           <div className="card-content head-first">
