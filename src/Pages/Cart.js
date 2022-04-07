@@ -68,7 +68,7 @@ const Cart = () => {
     const convertedJSON = await postData.json();
   };
   const totalPrice = cart.reduce((acc, cur) => {
-    return (acc = acc + cur.price * cur.qty);
+    return (acc = acc + cur.price * cur.qty + 49);
   }, 0);
   const priceReduce = cart.reduce((acc, cur) => {
     return acc + cur.originalPrice * cur.qty;
@@ -89,7 +89,7 @@ const Cart = () => {
         price: priceReduce,
         total: totalPrice,
         discount: discountReduce,
-        delivery: prevState.total > 500 ? 0 : 49,
+        delivery: cart.length === 0 ? 0 : 49,
       };
     });
   }, [cart]);
