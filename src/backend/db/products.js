@@ -48,7 +48,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    productBrand: "Lemon Tea",
+    productBrand: "Lipton Lemon Tea",
     productDetail: "Easy to make and flavorful",
     originalPrice: 599,
     price: 299,
@@ -87,7 +87,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    productBrand: "Exotica",
+    productBrand: "Exotica Tea Sachet",
     productDetail: "Pictoris M Running Shoes For Men  (Black) ",
     originalPrice: 499,
     price: 299,
