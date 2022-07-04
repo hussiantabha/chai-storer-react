@@ -5,13 +5,12 @@ import "../css/navbar.css";
 const NavBar = ({ wishlistCount, cartCount }) => {
   const [showHam, setShowHam] = useState(false);
   const { userLoggedIn, logout } = useContext(FilterContext);
-  console.log(userLoggedIn);
   return (
     <>
       <nav className="navbar nav ">
         <Link to="/">
           <div>
-            <h2>The Chai Store</h2>
+            <h2 className="nav-header">The Chai Store</h2>
           </div>
         </Link>
         <div className="nav-search-bar">

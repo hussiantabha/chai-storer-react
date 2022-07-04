@@ -19,7 +19,6 @@ const Login = () => {
       });
       if (postData.status === 200) {
         const convertedJSON = await postData.json();
-
         sessionStorage.setItem("token", convertedJSON.encodedToken);
         setLoginInput({ email: "", password: "" });
         navigate("/products");
@@ -56,7 +55,7 @@ const Login = () => {
       } else {
         toast.error("Invalid Credentials", {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: false,
@@ -74,14 +73,13 @@ const Login = () => {
       <NavBar />
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
       />
       <ToastContainer />
       <section className="login-container">

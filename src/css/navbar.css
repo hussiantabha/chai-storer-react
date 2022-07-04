@@ -33,6 +33,9 @@
   height: 1.25rem;
   background-color: burlywood;
 }
+.nav-header {
+  color: white;
+}
 .nav-hamburger {
   display: none;
 }
