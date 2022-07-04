@@ -1,4 +1,4 @@
-.display-categories-container {
+.categories-container {
   margin-top: 4rem;
   display: flex;
   flex-wrap: row wrap;
@@ -93,12 +93,12 @@
   padding: 0.5rem 1rem;
 }
 @media screen and (max-width: 768px) {
-  .display-categories-container {
+  /* .display-categories-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
+  } */
   .hero-card {
     display: flex;
     flex-direction: column;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MainCategories = () => {
   return (
     <>
-      <main className="display-categories-container">
+      <main className="categories-container">
         <div className="categories">
           <Link to="/products" className="flex-center">
             <img
