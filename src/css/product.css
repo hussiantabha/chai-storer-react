@@ -11,7 +11,7 @@
 }
 .filter-sidebar {
   grid-area: filter-sidebar;
-  height: 100vh;
+  height: 100%;
   background-color: var(--light-purple);
   position: relative;
 }
@@ -22,6 +22,7 @@
   row-gap: 2rem;
   padding: 2rem;
   position: fixed;
+  max-width: 80%;
 }
 .filter-category {
   display: flex;
@@ -30,6 +31,7 @@
 }
 .product-search-div {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
 }
 .px-1 {
@@ -63,15 +65,16 @@
   display: flex;
   max-width: 17rem;
   flex-direction: column;
-  row-gap: 9px;
   border: 1px solid var(--light-gray);
-  padding: 1rem;
+  justify-content: space-evenly;
   position: relative;
+  padding: 0.5rem;
 }
 .productCard-img-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 40%;
 }
 .card-img {
   max-width: 50%;
@@ -91,9 +94,16 @@
   display: flex;
   align-items: center;
 }
-.card-ratings {
-  padding-left: 1rem;
+.card-price span {
+  padding-left: 0.25rem;
 }
+.card-ratings {
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
 .card-like-btn {
   width: 2rem;
   height: 2rem;
@@ -110,7 +120,18 @@
   padding: 0.75rem;
   border-radius: 0.25rem;
   border: 1px solid var(--light-gray);
-  width: 80%;
+}
+.card-content {
+  margin-top: 1.25rem;
+}
+.filter-btn {
+  display: none;
+}
+.filter-btn-div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
 }
 @media screen and (max-width: 768px) {
   .product-body {
@@ -119,5 +140,20 @@
     grid-template-areas:
       "nav"
       "main-product-container";
+  }
+  .filter-sidebar {
+    display: none;
+  }
+  .filter-btn {
+    display: block;
+  }
+  .show-sidebar {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+  .filters {
+    background-color: var(--light-purple);
+    height: 100%;
   }
 }

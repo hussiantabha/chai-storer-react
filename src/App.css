@@ -1,12 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import "../src/css/login.css";
 @import "../src/css/navbar.css";
 @import "../src/css/homepage.css";
 @import "../src/css/product.css";
 @import "../src/css/cart.css";
 @import "../src/css/wishlist.css";
+body {
+  font-family: "Montserrat", sans-serif;
+}
+.btn {
+  cursor: pointer;
+}
 :root {
   --light-gray: #dcdcdc;
   --white: #fff;
   --light-purple: #ede9fe;
   --dark-gray: #4b5563;
+  --chai: #a97559;
 }

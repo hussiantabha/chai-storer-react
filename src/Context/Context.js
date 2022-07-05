@@ -29,7 +29,7 @@ const FilterContextProvider = ({ children }) => {
     sessionStorage.setItem("token", "undefined");
     toast.success("User SucessFully Logged Out", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
