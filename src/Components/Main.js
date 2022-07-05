@@ -16,14 +16,14 @@ const Main = () => {
         </div>
         <img src="../assets/chai.jpg" className="hero-img" />
       </section>
-      <section class="hero-card-container">
-        <div class="hero-card">
-          <div class="hero-card-img-container">
+      <section clasName="hero-card-container">
+        <div className="hero-card">
+          <div className="hero-card-img-container">
             <img src="../assets/tata-tea-premium.png" class="hero-card-img" />
           </div>
-          <div class="hero-card-content">
+          <div className="hero-card-content">
             <h3>Exotic Tea</h3>
-            <p class="py-1">
+            <p className="py-1">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               officiis necessitatibus sint mollitia? Laudantium, quia?
             </p>
@@ -32,13 +32,13 @@ const Main = () => {
             </Link>
           </div>
         </div>
-        <div class="hero-card">
-          <div class="hero-card-img-container">
+        <div className="hero-card">
+          <div className="hero-card-img-container">
             <img src="../assets/tea-sachet.png" class="hero-card-img" />
           </div>
-          <div class="hero-card-content">
+          <div className="hero-card-content">
             <h3>Premium Tea</h3>
-            <p class="py-1">
+            <p className="py-1">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
               officiis necessitatibus sint mollitia? Laudantium, quia?
             </p>
@@ -52,7 +52,3 @@ const Main = () => {
   );
 };
 export { Main };
-
-{
-  /* <p>No matter where you are in the world, you are at home when tea is served</p>; */
-}

@@ -20,6 +20,18 @@ const MainCategories = () => {
         </Link>
         <h3>Premium</h3>
       </div>
+      <Link to="/products">
+        <div className="categories-card">
+          <img src="../assets/tea-sachet.png" className="categories-img" />
+          <h3>Single Serve</h3>
+        </div>
+      </Link>
+      <Link to="/products">
+        <div className="categories-card">
+          <img src="../assets/lemon-tea.png" className="categories-img" />
+          <h3>Day to Day Tea</h3>
+        </div>
+      </Link>
     </main>
   );
 };

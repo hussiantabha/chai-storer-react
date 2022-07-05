@@ -68,7 +68,7 @@
   border: 1px solid var(--light-gray);
   justify-content: space-evenly;
   position: relative;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
 }
 .productCard-img-container {
   display: flex;

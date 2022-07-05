@@ -50,7 +50,6 @@ const ListingProducts = () => {
         }),
       });
       const convertedJSON = await postData.json();
-      console.log(convertedJSON);
       toast.success("Product Added To Wishlist", {
         position: "top-right",
         autoClose: 1000,

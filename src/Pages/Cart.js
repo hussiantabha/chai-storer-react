@@ -76,7 +76,6 @@ const Cart = () => {
     const convertedJSON = await postData.json();
   };
   const totalPrice = () => {
-    console.log(cart, "in func");
     let value = cart.reduce((acc, cur) => {
       return (acc = acc + cur.price * cur.qty);
     }, 0);
@@ -136,7 +135,6 @@ const Cart = () => {
                           </span>
                           <span>₹{product.price}</span>
                         </div>
-                        {/* <span>45% Off</span> */}
                         <div className="btn-quantity-container">
                           <span>Quantity</span>
                           <button
