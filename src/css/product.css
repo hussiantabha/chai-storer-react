@@ -124,6 +124,15 @@
 .card-content {
   margin-top: 1.25rem;
 }
+.filter-btn {
+  display: none;
+}
+.filter-btn-div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+}
 @media screen and (max-width: 768px) {
   .product-body {
     display: grid;
@@ -134,5 +143,17 @@
   }
   .filter-sidebar {
     display: none;
+  }
+  .filter-btn {
+    display: block;
+  }
+  .show-sidebar {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+  .filters {
+    background-color: var(--light-purple);
+    height: 100%;
   }
 }
