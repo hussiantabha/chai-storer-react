@@ -62,3 +62,9 @@
   display: flex;
   justify-content: space-between;
 }
+.cart-heading {
+  font-size: 2.5rem;
+  margin-top: 4rem;
+  text-align: center;
+  font-weight: bolder;
+}

@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FilterContext } from "../Context/Context";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react/cjs/react.production.min";
-
+import { BsFillStarFill } from "react-icons/bs";
 const ListingProducts = () => {
   const { products, filterState, dispatch, sortData, userLoggedIn } =
     useContext(FilterContext);
   const navigate = useNavigate();
+  const [showSidebar, setShowSidebar] = useState(false);
   const token = sessionStorage.getItem("token");
   const addtoCart = async (product) => {
     if (userLoggedIn) {
@@ -24,10 +24,9 @@ const ListingProducts = () => {
         }),
       });
       const convertedJSON = await postData.json();
-      console.log(convertedJSON);
       toast.success("Product Added To Cart", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -51,10 +50,9 @@ const ListingProducts = () => {
         }),
       });
       const convertedJSON = await postData.json();
-      console.log(convertedJSON);
       toast.success("Product Added To Wishlist", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: false,
@@ -70,7 +68,7 @@ const ListingProducts = () => {
       <body className="product-body">
         <ToastContainer
           position="top-right"
-          autoClose={5000}
+          autoClose={1000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -81,7 +79,8 @@ const ListingProducts = () => {
         />
         {/* Same as */}
         <ToastContainer />
-        <aside className="filter-sidebar">
+
+        <aside className={showSidebar ? "show-sidebar" : "filter-sidebar"}>
           <section className="filters">
             <div className="product-search-div">
               <input
@@ -264,6 +263,14 @@ const ListingProducts = () => {
           </section>
         </aside>
         <main className="main-product-container">
+          <div className="filter-btn-div">
+            <button
+              className="btn btn-primary-outline filter-btn"
+              onClick={() => setShowSidebar((prev) => !prev)}
+            >
+              Filters
+            </button>
+          </div>
           <section className="product-card-container">
             {sortData.length === 0 ? (
               <h2>Loading</h2>
@@ -275,13 +282,14 @@ const ListingProducts = () => {
                       <img src={product.imgURL} className="card-img" />
                     </div>
                     <div className="card-content">
-                      <h1 key={product.id}>{product.productBrand}</h1>
+                      <h4 key={product.id}>{product.productBrand}</h4>
                       <div className="card-price">
                         <span className="price-scratch">
                           ₹{product.originalPrice}
                         </span>
                         <span>₹{product.price}</span>
                         <div className="card-ratings">
+                          <BsFillStarFill />
                           <span>{product.ratings}</span>
                         </div>
                       </div>
