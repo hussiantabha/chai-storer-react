@@ -16,7 +16,7 @@ const Main = () => {
         </div>
         <img src="../assets/chai.jpg" className="hero-img" />
       </section>
-      <section clasName="hero-card-container">
+      <section className="hero-card-container">
         <div className="hero-card">
           <div className="hero-card-img-container">
             <img src="../assets/tata-tea-premium.png" class="hero-card-img" />
