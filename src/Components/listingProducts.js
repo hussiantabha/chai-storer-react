@@ -89,7 +89,7 @@ const ListingProducts = () => {
                 placeholder="search Product"
               />
               <button
-                className="btn-primary-outline px-1"
+                className="btn-primary-outline px-1 search-btn"
                 onClick={() => dispatch({ type: "clearAll" })}
               >
                 Clear All

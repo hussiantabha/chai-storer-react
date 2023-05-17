@@ -98,19 +98,6 @@
   width: 100%;
 }
 @media screen and (max-width: 768px) {
-  /* .display-categories-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  } */
-  .hero-card {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem;
-  }
-}
-@media screen and (max-width: 480px) {
   .hero-card-container {
     display: flex;
     flex-direction: column;
@@ -123,6 +110,13 @@
   }
   .hero-card-img-container {
     align-self: center;
+  }
+  .hero-card-img {
+    width: 150%;
+  }
+  .hero-card {
+    width: 15rem;
+    padding: 1.5rem;
   }
   .hero-img {
     display: none;
