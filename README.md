@@ -1,3 +1,7 @@
-## E-Commerce Backend
+## Chai Store - An ultimately place to buy your favorite chai online.
 
-This folder contains the Mock Backend created for E-Commerce App. It contains different API end-points and database configuration for building E-Commerce; so that you can focus on building Frontend.
+### Features
+1. Product Filtering
+2. Authentication
+3. Cart 
+
