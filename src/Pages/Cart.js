@@ -3,10 +3,12 @@ import { NavBar } from "../Components/Nav";
 import { FilterContext } from "../Context/Context";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [cart, setCart] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
   const [price, setPrice] = useState({
     price: 0,
     discount: 0,
@@ -14,10 +16,11 @@ const Cart = () => {
     delivery: 0,
   });
   const { userLoggedIn, sortData } = useContext(FilterContext);
+  const [user, setUser] = useState(false);
   const token = sessionStorage.getItem("token");
   const getData = async () => {
     try {
-      if (userLoggedIn) {
+      if (token !== null) {
         const response = await fetch("/api/user/cart", {
           method: "GET",
           headers: {
@@ -105,12 +108,34 @@ const Cart = () => {
         delivery: cart.length === 0 ? 0 : 49,
       };
     });
+    setCartCount(cart.length);
   }, [cart]);
-  const count = cart.length;
+  const url = "https://e-commerce-backend-red-ten.vercel.app/api/hello";
+  // const url = "http://localhost:3000/api/hello";
+  const placeOrder = async () => {
+    const goCheckout = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Credentials": "true",
+      },
+      body: JSON.stringify({
+        cart,
+      }),
+    });
+    const convertedJSON = await goCheckout.json();
+    console.log(convertedJSON);
+    // <Link to={convertedJSON.session.url} />;
+    window.location.replace(convertedJSON.session.url);
+  };
+  // console.log(JSON.stringify(cart));
+
   return (
     <>
-      <NavBar cartCount={count} />
-      {userLoggedIn ? (
+      <NavBar cartCount={cartCount} />
+      {/* {token !== null ? <h1>user Exist</h1> : <h1>Not logged in</h1>} */}
+      {token !== null ? (
         cart.length === 0 ? (
           <h1 className="cart-heading">No Items in Cart</h1>
         ) : (
@@ -118,7 +143,7 @@ const Cart = () => {
             <div className="card-product-container">
               {cart.map((product) => {
                 return (
-                  <>
+                  <React.Fragment>
                     <div className="cart-card">
                       <div className="cart-card-img-container">
                         <img
@@ -162,7 +187,7 @@ const Cart = () => {
                         </button>
                       </div>
                     </div>
-                  </>
+                  </React.Fragment>
                 );
               })}
             </div>
@@ -189,7 +214,9 @@ const Cart = () => {
                 </div>
                 <hr />
                 <span>You will save ₹{price.discount} on this order</span>
-                <button className="btn btn-primary">Place Order</button>
+                <button className="btn btn-primary" onClick={placeOrder}>
+                  Place Order
+                </button>
               </div>
             </div>
           </section>

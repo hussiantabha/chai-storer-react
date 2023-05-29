@@ -12,7 +12,7 @@ const ListingProducts = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const token = sessionStorage.getItem("token");
   const addtoCart = async (product) => {
-    if (userLoggedIn) {
+    if (token !== null) {
       const postData = await fetch("/api/user/cart", {
         method: "POST",
         headers: {
@@ -65,7 +65,7 @@ const ListingProducts = () => {
   };
   return (
     <>
-      <body className="product-body">
+      <div className="product-body">
         <ToastContainer
           position="top-right"
           autoClose={1000}
@@ -317,7 +317,7 @@ const ListingProducts = () => {
             )}
           </section>
         </main>
-      </body>
+      </div>
     </>
   );
 };

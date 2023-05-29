@@ -5,6 +5,7 @@
 @import "../src/css/product.css";
 @import "../src/css/cart.css";
 @import "../src/css/wishlist.css";
+@import "../src/css/success.css";
 body {
   font-family: "Montserrat", sans-serif;
 }

@@ -1,10 +1,23 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FilterContext } from "../Context/Context";
+import { ToastContainer, toast } from "react-toastify";
 import "../css/navbar.css";
 const NavBar = ({ wishlistCount, cartCount }) => {
   const [showHam, setShowHam] = useState(false);
-  const { userLoggedIn, logout } = useContext(FilterContext);
+  const token = sessionStorage.getItem("token");
+  const logout = () => {
+    sessionStorage.clear();
+    toast.success("User Logged Out.", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   return (
     <>
       <nav className="navbar nav ">
@@ -24,11 +37,8 @@ const NavBar = ({ wishlistCount, cartCount }) => {
         <div
           className={showHam ? "nav-hamburger-active" : "nav-link-container"}
         >
-          {userLoggedIn ? (
-            <button
-              className="btn btn-primary-outline"
-              onClick={() => logout()}
-            >
+          {token !== null ? (
+            <button className="btn btn-primary-outline" onClick={logout}>
               Logout{" "}
             </button>
           ) : (
@@ -40,13 +50,17 @@ const NavBar = ({ wishlistCount, cartCount }) => {
           <Link to="/wishlist">
             <div className="badges">
               <i className="fas fa-heart nav-cart"></i>
-              <span className="badge">{wishlistCount}</span>
+              <span className="badge">
+                {wishlistCount === undefined ? 0 : wishlistCount}
+              </span>
             </div>
           </Link>
           <Link to="/cart">
             <div className="badges">
               <i className="fas fa-shopping-cart nav-cart"></i>
-              <span className="badge">{cartCount}</span>
+              <span className="badge">
+                {cartCount === undefined ? 0 : cartCount}
+              </span>
             </div>
           </Link>
         </div>

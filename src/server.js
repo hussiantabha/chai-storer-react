@@ -57,6 +57,10 @@ export function makeServer({ environment = "development" } = {}) {
 
     routes() {
       this.namespace = "api";
+      this.passthrough("https://localhost:3000/api/hello");
+      this.passthrough(
+        "https://e-commerce-backend-red-ten.vercel.app/api/hello"
+      );
       // auth routes (public)
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));

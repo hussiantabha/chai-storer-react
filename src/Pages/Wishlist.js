@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavBar } from "../Components/Nav";
 import { FilterContext } from "../Context/Context";
+import { Link } from "react-router-dom";
 
 const Wishlist = () => {
   const { userLoggedIn } = useContext(FilterContext);
@@ -29,11 +30,11 @@ const Wishlist = () => {
   useEffect(() => {
     getData();
   }, []);
-  const count = wishlist.length;
+  const count = 0;
   return (
     <>
       <NavBar />
-      {userLoggedIn ? (
+      {token !== null ? (
         <main>
           <h1 className="wishlist-display-title">My Wishlist</h1>
           <section className="wishlist-card-container">
@@ -71,7 +72,12 @@ const Wishlist = () => {
           </section>
         </main>
       ) : (
-        <h1>User Not Logged In</h1>
+        <section className="follow-section">
+          <h2>Please Login/Signup to start saving your favorite Chai</h2>
+          <Link to={"/login"}>
+            <button className="btn btn-primary">Login</button>
+          </Link>
+        </section>
       )}
     </>
   );

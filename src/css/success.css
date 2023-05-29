@@ -1,0 +1,13 @@
+.success-section-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+  margin: 2rem auto;
+  align-items: center;
+}
+.success-img-container {
+  width: 20%;
+}
+.success-img-container img {
+  width: 100%;
+}

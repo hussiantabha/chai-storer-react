@@ -16,17 +16,16 @@ const FilterContextProvider = ({ children }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const token = sessionStorage.getItem("token");
   useEffect(() => {
-    // console.log(sessionStorage.getItem("token"));
     if (sessionStorage.getItem("token") === null) {
       setUserLoggedIn(false);
-    } else if (sessionStorage.getItem("token") === "undefined") {
+    } else if (sessionStorage.getItem("token") === undefined) {
       setUserLoggedIn(false);
     } else {
       setUserLoggedIn(true);
     }
-  });
+  }, []);
   const logout = () => {
-    sessionStorage.setItem("token", "undefined");
+    sessionStorage.setItem("token", null);
     toast.success("User SucessFully Logged Out", {
       position: "top-right",
       autoClose: 1000,

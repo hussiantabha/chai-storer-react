@@ -11,11 +11,12 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import { FilterContextProvider } from "./Context/Context";
 import MockMan from "./backend/Pages/MockMan";
+import Success from "./Pages/Success";
 // Call make Server
 makeServer();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <FilterContextProvider>
       <BrowserRouter>
         <Routes>
@@ -26,9 +27,10 @@ ReactDOM.render(
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/mock" element={<MockMan />} />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </BrowserRouter>
     </FilterContextProvider>
-  </React.StrictMode>,
+  </>,
   document.getElementById("root")
 );
