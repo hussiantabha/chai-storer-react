@@ -5,9 +5,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "../css/navbar.css";
 const NavBar = ({ wishlistCount, cartCount }) => {
   const [showHam, setShowHam] = useState(false);
+  const [check, setCheck] = useState(false);
   const token = sessionStorage.getItem("token");
   const logout = () => {
     sessionStorage.clear();
+    setCheck((prev) => (prev === true ? false : true));
     toast.success("User Logged Out.", {
       position: "top-right",
       autoClose: 1000,

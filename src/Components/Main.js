@@ -19,7 +19,10 @@ const Main = () => {
       <section className="hero-card-container">
         <div className="hero-card">
           <div className="hero-card-img-container">
-            <img src="../assets/tata-tea-premium.png" class="hero-card-img" />
+            <img
+              src="../assets/tata-tea-premium.png"
+              className="hero-card-img"
+            />
           </div>
           <div className="hero-card-content">
             <h3>Exotic Tea</h3>
@@ -28,13 +31,13 @@ const Main = () => {
               officiis necessitatibus sint mollitia? Laudantium, quia?
             </p>
             <Link to="/products" className="cta">
-              <a class="btn btn-primary hero-btn">Buy Now</a>
+              <p className="btn btn-primary hero-btn">Buy Now</p>
             </Link>
           </div>
         </div>
         <div className="hero-card">
           <div className="hero-card-img-container">
-            <img src="../assets/tea-sachet.png" class="hero-card-img" />
+            <img src="../assets/tea-sachet.png" className="hero-card-img" />
           </div>
           <div className="hero-card-content">
             <h3>Premium Tea</h3>
@@ -43,7 +46,7 @@ const Main = () => {
               officiis necessitatibus sint mollitia? Laudantium, quia?
             </p>
             <Link to="/products" className="cta">
-              <a class="btn btn-primary hero-btn">Buy Now</a>
+              <p className="btn btn-primary hero-btn">Buy Now</p>
             </Link>
           </div>
         </div>

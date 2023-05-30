@@ -38,7 +38,7 @@ const ListingProducts = () => {
     }
   };
   const addToWishlist = async (product) => {
-    if (userLoggedIn) {
+    if (token !== null) {
       const postData = await fetch("/api/user/wishlist", {
         method: "POST",
         headers: {
@@ -119,6 +119,7 @@ const ListingProducts = () => {
               <div>
                 <input
                   type="checkbox"
+                  onChange={(e) => {}}
                   checked={filterState.categoryValue}
                   onClick={(e) =>
                     dispatch({
@@ -133,6 +134,7 @@ const ListingProducts = () => {
                 <input
                   type="checkbox"
                   checked={filterState.categoryValue}
+                  onChange={(e) => {}}
                   onClick={(e) =>
                     dispatch({
                       type: "category",
@@ -145,6 +147,7 @@ const ListingProducts = () => {
               <div>
                 <input
                   type="checkbox"
+                  onChange={(e) => {}}
                   checked={filterState.categoryValue}
                   onClick={(e) =>
                     dispatch({
@@ -158,6 +161,7 @@ const ListingProducts = () => {
               <div>
                 <input
                   type="checkbox"
+                  onChange={(e) => {}}
                   checked={filterState.categoryValue}
                   onClick={(e) =>
                     dispatch({
@@ -171,23 +175,7 @@ const ListingProducts = () => {
             </div>
             <div className="filter-category">
               <h3>Rating</h3>
-              {/* {[4, 3, 2, 1].map((item) => {
-                return (
-                  <div>
-                    <input
-                      type="checkbox"
-                      checked={filterState.ratingValue}
-                      onClick={(e) =>
-                        dispatch({
-                          type: "RATING",
-                          payload: { check: e.target.checked, value: item },
-                        })
-                      }
-                    />
-                    <span>{item} star & above</span>
-                  </div>
-                );
-              })} */}
+
               <div>
                 <input
                   type="checkbox"
@@ -277,7 +265,7 @@ const ListingProducts = () => {
             ) : (
               sortData.map((product) => {
                 return (
-                  <div className="product-card">
+                  <div className="product-card" key={product._id}>
                     <div className="productCard-img-container">
                       <img src={product.imgURL} className="card-img" />
                     </div>

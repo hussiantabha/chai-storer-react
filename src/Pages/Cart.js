@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [price, setPrice] = useState({
@@ -37,15 +37,17 @@ const Cart = () => {
     }
   };
   const removeCart = async (product) => {
-    const url = `/api/user/cart/${product._id}`;
-    const postData = await fetch(url, {
-      method: "DELETE",
-      headers: {
-        authorization: token,
-      },
-    });
-    const convertedJSON = await postData.json();
-    setCart(convertedJSON.cart);
+    try {
+      const url = `/api/user/cart/${product._id}`;
+      const postData = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          authorization: token,
+        },
+      });
+      const convertedJSON = await postData.json();
+      setCart(convertedJSON.cart);
+    } catch {}
   };
 
   const increaseQty = async (product) => {
@@ -77,6 +79,20 @@ const Cart = () => {
       }),
     });
     const convertedJSON = await postData.json();
+  };
+  const moveToWishlist = async (product) => {
+    const postData = await fetch("/api/user/wishlist", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        authorization: token,
+      },
+      body: JSON.stringify({
+        product: product,
+      }),
+    });
+    const convertedJSON = await postData.json();
+    removeCart(product);
   };
   const totalPrice = () => {
     let value = cart.reduce((acc, cur) => {
@@ -112,22 +128,53 @@ const Cart = () => {
   }, [cart]);
   const url = "https://e-commerce-backend-red-ten.vercel.app/api/hello";
   // const url = "http://localhost:3000/api/hello";
+  const withDeliveryCart = [
+    ...cart,
+    {
+      productBrand: "Delivery Charges",
+      productDetail: "",
+      price: 49,
+      qty: 1,
+    },
+  ];
+
   const placeOrder = async () => {
-    const goCheckout = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        // "Access-Control-Allow-Credentials": "true",
-      },
-      body: JSON.stringify({
-        cart,
-      }),
-    });
-    const convertedJSON = await goCheckout.json();
-    console.log(convertedJSON);
-    // <Link to={convertedJSON.session.url} />;
-    window.location.replace(convertedJSON.session.url);
+    setLoading(true);
+    try {
+      const goCheckout = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          // "Access-Control-Allow-Credentials": "true",
+        },
+        body: JSON.stringify({
+          withDeliveryCart,
+        }),
+      });
+      console.log(goCheckout);
+      if (goCheckout.status !== 200 || goCheckout.ok === false) {
+        console.log("gadbad");
+        toast.error("Something went wrong", {
+          position: "top-right",
+        });
+        setLoading(false);
+      } else {
+        const convertedJSON = await goCheckout.json();
+        window.location.replace(convertedJSON.session.url);
+      }
+    } catch {
+      toast.error("Something went wrong. Try Again!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
+      setLoading(false);
+    }
   };
   // console.log(JSON.stringify(cart));
 
@@ -143,7 +190,7 @@ const Cart = () => {
             <div className="card-product-container">
               {cart.map((product) => {
                 return (
-                  <React.Fragment>
+                  <React.Fragment key={product._id}>
                     <div className="cart-card">
                       <div className="cart-card-img-container">
                         <img
@@ -176,7 +223,10 @@ const Cart = () => {
                             +
                           </button>
                         </div>
-                        <button className="btn btn-primary">
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => moveToWishlist(product)}
+                        >
                           Move to Wishlist
                         </button>
                         <button
@@ -215,7 +265,7 @@ const Cart = () => {
                 <hr />
                 <span>You will save ₹{price.discount} on this order</span>
                 <button className="btn btn-primary" onClick={placeOrder}>
-                  Place Order
+                  {loading ? "Loading..." : "Place Order"}
                 </button>
               </div>
             </div>

@@ -11,6 +11,10 @@ body {
 }
 .btn {
   cursor: pointer;
+  font-family: inherit;
+}
+input {
+  font-family: inherit;
 }
 :root {
   --light-gray: #dcdcdc;

@@ -41,7 +41,7 @@ const Wishlist = () => {
             {wishlist.length > 0 ? (
               wishlist.map((product) => {
                 return (
-                  <>
+                  <React.Fragment key={product._id}>
                     <div className="wishlist-card">
                       <div className="wishlist-card-img-container">
                         <img
@@ -63,7 +63,7 @@ const Wishlist = () => {
                         <i className="fas fa-heart"></i>
                       </button>
                     </div>
-                  </>
+                  </React.Fragment>
                 );
               })
             ) : (
