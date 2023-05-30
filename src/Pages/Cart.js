@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavBar } from "../Components/Nav";
 import { FilterContext } from "../Context/Context";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-
+import { Navigate } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
+import { AppContext } from "../Context/Context";
 const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
@@ -16,7 +15,7 @@ const Cart = () => {
     delivery: 0,
   });
   const { userLoggedIn, sortData } = useContext(FilterContext);
-  const [user, setUser] = useState(false);
+  const { notiDispatch } = useContext(AppContext);
   const token = sessionStorage.getItem("token");
   const getData = async () => {
     try {
@@ -47,6 +46,11 @@ const Cart = () => {
       });
       const convertedJSON = await postData.json();
       setCart(convertedJSON.cart);
+      notiDispatch({
+        type: "cart",
+        payload: { cartLength: convertedJSON.cart.length },
+      });
+      toast.success("Product Removed from Cart");
     } catch {}
   };
 
@@ -64,6 +68,7 @@ const Cart = () => {
       }),
     });
     const convertedJSON = await postData.json();
+    setCart(convertedJSON.cart);
   };
   const decreaseQty = async (product) => {
     const postData = await fetch(`/api/user/cart/${product._id}`, {
@@ -79,20 +84,41 @@ const Cart = () => {
       }),
     });
     const convertedJSON = await postData.json();
+    setCart(convertedJSON.cart);
   };
+
   const moveToWishlist = async (product) => {
-    const postData = await fetch("/api/user/wishlist", {
-      method: "POST",
+    const getWishlist = await fetch("/api/user/wishlist", {
+      method: "GET",
       headers: {
-        "Content-type": "application/json",
         authorization: token,
       },
-      body: JSON.stringify({
-        product: product,
-      }),
     });
-    const convertedJSON = await postData.json();
-    removeCart(product);
+    const wishlistDtata = await getWishlist.json();
+    const filterData = wishlistDtata.wishlist.filter(
+      (item) => item._id === product._id
+    );
+    if (filterData.length > 0) {
+      toast.error("Product Already in wishlist");
+    } else {
+      const postData = await fetch("/api/user/wishlist", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          authorization: token,
+        },
+        body: JSON.stringify({
+          product: product,
+        }),
+      });
+      const convertedJSON = await postData.json();
+      notiDispatch({
+        type: "wishlist",
+        payload: { wishlistLength: convertedJSON.wishlist.length },
+      });
+      removeCart(product);
+      toast.success("Product moved to wishlist");
+    }
   };
   const totalPrice = () => {
     let value = cart.reduce((acc, cur) => {
@@ -111,9 +137,10 @@ const Cart = () => {
   useEffect(() => {
     getData();
   }, []);
-  useEffect(() => {
-    getData();
-  }, [cart, price]);
+  // because of this useEffect console.log continously keeps printing
+  // useEffect(() => {
+  //   getData();
+  // }, [cart, price]);
   useEffect(() => {
     setPrice((prevState) => {
       return {
@@ -137,7 +164,6 @@ const Cart = () => {
       qty: 1,
     },
   ];
-
   const placeOrder = async () => {
     setLoading(true);
     try {
@@ -152,34 +178,22 @@ const Cart = () => {
           withDeliveryCart,
         }),
       });
-      console.log(goCheckout);
       if (goCheckout.status !== 200 || goCheckout.ok === false) {
-        console.log("gadbad");
-        toast.error("Something went wrong", {
-          position: "top-right",
-        });
+        toast.error("Something went wrong");
         setLoading(false);
       } else {
         const convertedJSON = await goCheckout.json();
         window.location.replace(convertedJSON.session.url);
       }
     } catch {
-      toast.error("Something went wrong. Try Again!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error("Something went wrong. Try Again!");
       setLoading(false);
     }
   };
-  // console.log(JSON.stringify(cart));
 
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
       <NavBar cartCount={cartCount} />
       {/* {token !== null ? <h1>user Exist</h1> : <h1>Not logged in</h1>} */}
       {token !== null ? (

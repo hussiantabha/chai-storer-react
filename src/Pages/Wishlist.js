@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavBar } from "../Components/Nav";
-import { FilterContext } from "../Context/Context";
 import { Link } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
+import { AppContext } from "../Context/Context";
 
 const Wishlist = () => {
-  const { userLoggedIn } = useContext(FilterContext);
+  const { notiDispatch } = useContext(AppContext);
   const [wishlist, setWishlist] = useState([]);
   const token = sessionStorage.getItem("token");
   const getData = async () => {
@@ -26,6 +27,11 @@ const Wishlist = () => {
     });
     const convertedJSON = await postData.json();
     setWishlist(convertedJSON.wishlist);
+    notiDispatch({
+      type: "wishlist",
+      payload: { wishlistLength: convertedJSON.wishlist.length },
+    });
+    toast.success("Product Deleted");
   };
   useEffect(() => {
     getData();
@@ -33,6 +39,7 @@ const Wishlist = () => {
   const count = 0;
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
       <NavBar />
       {token !== null ? (
         <main>

@@ -1,41 +1,21 @@
 import React, { createContext, useState, useEffect, useReducer } from "react";
 import axios from "axios";
 import { filterReducer } from "./Reucers/Filter-reducer";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   filterCategory,
   rangeFunc,
   ratingFunc,
   sortFunc,
 } from "./Reucers/filter-funcs";
+import { notiReducer, notiObj } from "./Reucers/app-reducer";
 const FilterContext = createContext({});
+
+const AppContext = createContext({});
 
 const FilterContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const token = sessionStorage.getItem("token");
-  useEffect(() => {
-    if (sessionStorage.getItem("token") === null) {
-      setUserLoggedIn(false);
-    } else if (sessionStorage.getItem("token") === undefined) {
-      setUserLoggedIn(false);
-    } else {
-      setUserLoggedIn(true);
-    }
-  }, []);
-  const logout = () => {
-    sessionStorage.setItem("token", null);
-    toast.success("User SucessFully Logged Out", {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    });
-  };
   const getData = async () => {
     try {
       const data = await axios.get("api/products");
@@ -46,7 +26,7 @@ const FilterContextProvider = ({ children }) => {
   };
   useEffect(() => {
     getData();
-  });
+  }, []);
   const reducerOBJ = {
     fastDelivery: false,
     sort: null,
@@ -61,32 +41,22 @@ const FilterContextProvider = ({ children }) => {
   const filterCategoriedData = filterCategory(filterState, rangedData);
   const ratingData = ratingFunc(filterState, filterCategoriedData);
   const sortData = sortFunc(filterState, ratingData);
+  const [notiState, notiDispatch] = useReducer(notiReducer, notiObj);
   return (
-    <FilterContext.Provider
-      value={{
-        products,
-        filterState,
-        dispatch,
-        sortData,
-        userLoggedIn,
-        logout,
-      }}
-    >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <ToastContainer />
-      {children}
-    </FilterContext.Provider>
+    <AppContext.Provider value={{ notiState, notiDispatch }}>
+      <FilterContext.Provider
+        value={{
+          products,
+          filterState,
+          dispatch,
+          sortData,
+          userLoggedIn,
+        }}
+      >
+        {children}
+      </FilterContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export { FilterContext, FilterContextProvider };
+export { FilterContext, FilterContextProvider, AppContext };

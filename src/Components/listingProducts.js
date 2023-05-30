@@ -2,15 +2,18 @@ import React, { useContext, useState } from "react";
 import { FilterContext } from "../Context/Context";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { BsFillStarFill } from "react-icons/bs";
+import { Toaster, toast } from "react-hot-toast";
+
+import { AppContext } from "../Context/Context";
+
 const ListingProducts = () => {
   const { products, filterState, dispatch, sortData, userLoggedIn } =
     useContext(FilterContext);
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
   const token = sessionStorage.getItem("token");
+  const { notiDispatch } = useContext(AppContext);
   const addtoCart = async (product) => {
     if (token !== null) {
       const postData = await fetch("/api/user/cart", {
@@ -24,15 +27,11 @@ const ListingProducts = () => {
         }),
       });
       const convertedJSON = await postData.json();
-      toast.success("Product Added To Cart", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+      notiDispatch({
+        type: "cart",
+        payload: { cartLength: convertedJSON.cart.length },
       });
+      toast.success("Product Added To Cart");
     } else {
       navigate("/login");
     }
@@ -50,15 +49,11 @@ const ListingProducts = () => {
         }),
       });
       const convertedJSON = await postData.json();
-      toast.success("Product Added To Wishlist", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
+      notiDispatch({
+        type: "wishlist",
+        payload: { wishlistLength: convertedJSON.wishlist.length },
       });
+      toast.success("Product Added To Wishlist");
     } else {
       navigate("/login");
     }
@@ -66,20 +61,7 @@ const ListingProducts = () => {
   return (
     <>
       <div className="product-body">
-        <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        {/* Same as */}
-        <ToastContainer />
-
+        <Toaster position="top-center" reverseOrder={false} />
         <aside className={showSidebar ? "show-sidebar" : "filter-sidebar"}>
           <section className="filters">
             <div className="product-search-div">

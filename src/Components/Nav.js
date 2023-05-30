@@ -1,12 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FilterContext } from "../Context/Context";
-import { ToastContainer, toast } from "react-toastify";
+import { AppContext } from "../Context/Context";
+import { toast } from "react-hot-toast";
 import "../css/navbar.css";
 const NavBar = ({ wishlistCount, cartCount }) => {
   const [showHam, setShowHam] = useState(false);
   const [check, setCheck] = useState(false);
   const token = sessionStorage.getItem("token");
+  const { notiState } = useContext(AppContext);
+  // console.log(notiState);
   const logout = () => {
     sessionStorage.clear();
     setCheck((prev) => (prev === true ? false : true));
@@ -52,17 +55,13 @@ const NavBar = ({ wishlistCount, cartCount }) => {
           <Link to="/wishlist">
             <div className="badges">
               <i className="fas fa-heart nav-cart"></i>
-              <span className="badge">
-                {wishlistCount === undefined ? 0 : wishlistCount}
-              </span>
+              <span className="badge">{notiState.wishlist}</span>
             </div>
           </Link>
           <Link to="/cart">
             <div className="badges">
               <i className="fas fa-shopping-cart nav-cart"></i>
-              <span className="badge">
-                {cartCount === undefined ? 0 : cartCount}
-              </span>
+              <span className="badge">{notiState.cart}</span>
             </div>
           </Link>
         </div>
