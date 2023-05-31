@@ -54,13 +54,15 @@ const NavBar = ({ wishlistCount, cartCount }) => {
 
           <Link to="/wishlist">
             <div className="badges">
-              <i className="fas fa-heart nav-cart"></i>
+              {/* <i className="fas fa-heart nav-cart"></i> */}
+              <img src="../assets/heart.svg" />
               <span className="badge">{notiState.wishlist}</span>
             </div>
           </Link>
           <Link to="/cart">
             <div className="badges">
-              <i className="fas fa-shopping-cart nav-cart"></i>
+              {/* <i className="fas fa-shopping-cart nav-cart"></i> */}
+              <img src="../assets/cart-alt.svg" />
               <span className="badge">{notiState.cart}</span>
             </div>
           </Link>

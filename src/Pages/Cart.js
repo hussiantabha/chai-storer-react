@@ -279,7 +279,7 @@ const Cart = () => {
                 <hr />
                 <span>You will save ₹{price.discount} on this order</span>
                 <button className="btn btn-primary" onClick={placeOrder}>
-                  {loading ? "Loading..." : "Place Order"}
+                  {loading ? "Processing..." : "Place Order"}
                 </button>
               </div>
             </div>
